@@ -9,17 +9,42 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var formulaLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //ビューがロードされた際に空
+        formulaLabel.text = ""
+        answerLabel.text = ""
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+
+    @IBAction func inputFormula(_ sender: UIButton) {
+        // ボタン（Cと＝以外）が押されたら式を表記
+        guard let formulaText = formulaLabel.text else{
+            return
+        }
+        // [sender.titleLabel?.text]で押されたボタンのTitleを取得
+        guard let senderedText = sender.titleLabel?.text else {
+            return
+        }
+        // 式を連結
+        formulaLabel.text = formulaText + senderedText
+    }
+    @IBAction func clearCalculation(_ sender: UIButton) {
+        // Cボタンで式、答えをクリア
+        formulaLabel.text = ""
+        answerLabel.text = ""
+    }
+    @IBAction func calculateAnswer(_ sender: UIButton) {
+        // 計算
+        
+    }
 
 }
 
